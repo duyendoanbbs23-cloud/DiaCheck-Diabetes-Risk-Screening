@@ -1,0 +1,110 @@
+{
+  "project": "DiaCheck \u2013 Diabetes Risk Screening",
+  "dataset": "CDC BRFSS 2015 Diabetes Health Indicators (Kaggle)",
+  "target": "Diabetes_binary",
+  "features": [
+    "HighBP",
+    "HighChol",
+    "BMI",
+    "Smoker",
+    "Stroke",
+    "HeartDiseaseorAttack",
+    "PhysActivity",
+    "GenHlth",
+    "Age",
+    "Sex"
+  ],
+  "feature_metadata": {
+    "HighBP": {
+      "min": 0,
+      "max": 1,
+      "type": "binary",
+      "label": "High blood pressure"
+    },
+    "HighChol": {
+      "min": 0,
+      "max": 1,
+      "type": "binary",
+      "label": "High cholesterol"
+    },
+    "BMI": {
+      "min": 12,
+      "max": 98,
+      "type": "numeric",
+      "label": "Body mass index (BMI)"
+    },
+    "Smoker": {
+      "min": 0,
+      "max": 1,
+      "type": "binary",
+      "label": "Smoking history"
+    },
+    "Stroke": {
+      "min": 0,
+      "max": 1,
+      "type": "binary",
+      "label": "History of stroke"
+    },
+    "HeartDiseaseorAttack": {
+      "min": 0,
+      "max": 1,
+      "type": "binary",
+      "label": "Heart disease or heart attack"
+    },
+    "PhysActivity": {
+      "min": 0,
+      "max": 1,
+      "type": "binary",
+      "label": "Physical activity"
+    },
+    "GenHlth": {
+      "min": 1,
+      "max": 5,
+      "type": "ordinal",
+      "label": "General health"
+    },
+    "Age": {
+      "min": 1,
+      "max": 13,
+      "type": "ordinal",
+      "label": "Age category"
+    },
+    "Sex": {
+      "min": 0,
+      "max": 1,
+      "type": "binary",
+      "label": "Sex (dataset coding)"
+    }
+  },
+  "threshold": 0.16666666666666666,
+  "cost_assumptions": {
+    "false_negative": 5.0,
+    "false_positive": 1.0
+  },
+  "metrics": {
+    "test_size": 50736,
+    "roc_auc": 0.8146098663478047,
+    "average_precision": 0.38827609288301446,
+    "brier_score": 0.10060632475697344,
+    "threshold": 0.16666666666666666,
+    "accuracy": 0.7581993062125513,
+    "precision": 0.32753930869767134,
+    "recall_sensitivity": 0.6984014712123355,
+    "specificity": 0.7678796345066068,
+    "f1": 0.4459398428326258,
+    "confusion_matrix": {
+      "tn": 33531,
+      "fp": 10136,
+      "fn": 2132,
+      "tp": 4937
+    },
+    "positive_prevalence_test": 0.13932907600126143
+  },
+  "split": {
+    "method": "stratified random train/test split",
+    "test_size": 0.2,
+    "random_state": 42
+  },
+  "model": "StandardScaler + LogisticRegression",
+  "note": "Self-reported survey classification; not a clinical diagnosis. This threshold is an illustrative decision rule based on stated error-cost assumptions, not a medical guideline."
+}
