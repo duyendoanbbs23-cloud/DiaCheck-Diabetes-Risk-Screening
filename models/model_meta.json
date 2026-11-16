@@ -1,0 +1,153 @@
+{
+  "project": "DiaCheck",
+  "model": "StandardScaler + LogisticRegression",
+  "version": "2.0-full-questionnaire",
+  "target": "Diabetes_binary",
+  "target_description": "Self-reported diabetes status in CDC BRFSS 2015; not a laboratory-confirmed diagnosis.",
+  "data_source": "CDC Behavioral Risk Factor Surveillance System (BRFSS) 2015 Diabetes Health Indicators dataset; original imbalanced file.",
+  "features": [
+    "HighBP",
+    "HighChol",
+    "CholCheck",
+    "BMI",
+    "Smoker",
+    "Stroke",
+    "HeartDiseaseorAttack",
+    "PhysActivity",
+    "Fruits",
+    "Veggies",
+    "HvyAlcoholConsump",
+    "AnyHealthcare",
+    "NoDocbcCost",
+    "GenHlth",
+    "MentHlth",
+    "PhysHlth",
+    "DiffWalk",
+    "Sex",
+    "Age",
+    "Education",
+    "Income"
+  ],
+  "feature_count": 21,
+  "input_mode": "all_questions",
+  "questionnaire": {
+    "scope": "all 21 available BRFSS predictors",
+    "mental_health_question": "MentHlth: number of days (0-30) mental health was not good",
+    "physical_health_question": "PhysHlth: number of days (0-30) physical health was not good",
+    "bmi": {
+      "mode": "auto",
+      "formula": "weight_kg / (height_cm / 100)^2",
+      "model_value": "rounded to nearest integer to match BRFSS BMI coding",
+      "height_unit": "cm",
+      "weight_unit": "kg"
+    },
+    "result_display": "model_score_and_threshold_guidance"
+  },
+  "valid_input_ranges": {
+    "HighBP": [
+      0,
+      1
+    ],
+    "HighChol": [
+      0,
+      1
+    ],
+    "CholCheck": [
+      0,
+      1
+    ],
+    "BMI": [
+      12,
+      98
+    ],
+    "Smoker": [
+      0,
+      1
+    ],
+    "Stroke": [
+      0,
+      1
+    ],
+    "HeartDiseaseorAttack": [
+      0,
+      1
+    ],
+    "PhysActivity": [
+      0,
+      1
+    ],
+    "Fruits": [
+      0,
+      1
+    ],
+    "Veggies": [
+      0,
+      1
+    ],
+    "HvyAlcoholConsump": [
+      0,
+      1
+    ],
+    "AnyHealthcare": [
+      0,
+      1
+    ],
+    "NoDocbcCost": [
+      0,
+      1
+    ],
+    "GenHlth": [
+      1,
+      5
+    ],
+    "MentHlth": [
+      0,
+      30
+    ],
+    "PhysHlth": [
+      0,
+      30
+    ],
+    "DiffWalk": [
+      0,
+      1
+    ],
+    "Sex": [
+      0,
+      1
+    ],
+    "Age": [
+      1,
+      13
+    ],
+    "Education": [
+      1,
+      6
+    ],
+    "Income": [
+      1,
+      8
+    ]
+  },
+  "threshold": 0.16666666666666666,
+  "cost_assumptions": {
+    "false_negative": 5.0,
+    "false_positive": 1.0,
+    "note": "Illustrative relative costs for a classroom decision simulator; not clinical or monetary estimates."
+  },
+  "metrics": null,
+  "training": {
+    "random_state": 42,
+    "test_size": 0.2,
+    "split": "stratified train/test split",
+    "rows_used": null,
+    "dropped_missing_rows": null
+  },
+  "limitations": [
+    "BRFSS 2015 is a historical US telephone survey and may not generalize to current populations or other countries.",
+    "Inputs are self-reported survey indicators, not verified clinical measurements.",
+    "The model predicts a survey label, not a diagnosis confirmed by laboratory testing.",
+    "Education and income are included as predictors in this full-questionnaire version; subgroup performance and potential equity implications should be reviewed.",
+    "The score is not clinically calibrated and must not be used to diagnose, rule out, or treat diabetes."
+  ]
+}
