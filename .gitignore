@@ -1,6 +1,5 @@
+# Never upload private API keys or local environment files.
+.streamlit/secrets.toml
+.env
 __pycache__/
 *.py[cod]
-.venv/
-.env
-.DS_Store
-.streamlit/secrets.toml
